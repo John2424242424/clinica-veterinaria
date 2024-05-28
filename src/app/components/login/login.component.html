@@ -1,25 +1,52 @@
+<!DOCTYPE html>
 <div class="h-screen flex items-center justify-center">
-    <div class="flex flex-col w-3/4">
-        <div class="w-full flex justify-center mb-10">
-            <img src="../../../assets/veterinary-clinic-cartoon-advertisement-vector.jpg" alt="Imagen" class="w-full max-w-2xl">
-        </div>
-        <div class="w-full flex flex-col items-center mt-10">
-            <h2 class="text-3xl font-semibold mb-6 text-center">Bienvenido</h2>
-            <p class="text-xl mb-6 text-center">¿Quieres iniciar sesión o registrarte?</p>
-            <div class="flex space-x-4">
-                <button
-                    class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                    (click)="navigateToLogin()"
-                >
-                    Iniciar Sesión
-                </button>
-                <button
-                    class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
-                    (click)="navigateToRegister()"
-                >
-                    Registrarse
-                </button>
+<html lang="en" xml:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio de sesion</title>
+    <!---Css only--->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-purple navbar-white">
+    <a class="navbar-brand" href="#">Inicicio de sesion</a>
+    <div class="collapse navbar-collapse" id="collapsebleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link"
+                                    th:href="@{/Clientes}">Inicio de sesion</a></li>
+        </ul>
+    </div>
+</nav>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center">Inicio de Sesión</h1>
+            <div class="card-body">
+                <form th:action="@{clientes}" th:object="${cliente}" method="POST">
+
+                    <div class="form-group">
+                        <label>Correo Electronico : </label>
+                        <input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Ingrese su Email" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Contraseña : </label>
+                        <input type="text" name="contraseña" th:field="*{contraseña}" class="form-control" placeholder="Ingrese su Contraseña" required>
+                    </div>
+                    <div class="box-footer">
+                        <br>
+                        <button style="background-color:purple" class="btn btn-success">Ingresar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+  </div>
+
+</body>
+</html>
