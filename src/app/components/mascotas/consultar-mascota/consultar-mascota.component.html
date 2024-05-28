@@ -1,0 +1,70 @@
+<div class="max-w-screen-lg mx-auto mt-10 mr-auto relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-teal-100">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-indigo-400 dark:text-indigo-200">
+        <tr>
+          <th scope="col" class="px-6 py-3">Nombre</th>
+          <th scope="col" class="px-6 py-3">Especie</th>
+          <th scope="col" class="px-6 py-3">Raza</th>
+          <th scope="col" class="px-6 py-3">Edad</th>
+          <th scope="col" class="px-6 py-3">Acción</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-slate-50">
+        <tr *ngFor="let mascota of mascotas">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div>
+                <p class="text-sm font-semibold text-gray-900 dark:text-indigo-900">
+                  {{mascota.nombre}}
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div>
+                <p class="text-sm font-semibold text-gray-900 dark:text-indigo-900">
+                  {{mascota.especie}}
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div>
+                <p class="text-sm font-semibold text-gray-900 dark:text-indigo-900">
+                  {{mascota.raza}}
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div>
+                <p class="text-sm font-semibold text-gray-900 dark:text-indigo-900">
+                  {{mascota.edad}}
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+            <a
+              href="javascript:void(0)"
+              class="text-indigo-600 hover:text-indigo-900"
+              routerLink="/editar-mascota/{{mascota.id}}"
+            >
+              Editar
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="text-red-600 hover:text-red-900 ms-4"
+              (click)="borrarMascota(mascota.id)"
+            >
+              Borrar
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

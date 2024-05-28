@@ -1,0 +1,61 @@
+<div class="flex h-screen">
+  <div class="w-64 bg-gray-800 text-white p-4"></div>
+  <div class="ml-10">
+    <table class="min-w-full mt-16 border-collapse border border-gray-300">
+      <caption class="text-3xl font-semibold mb-4 text-blue-700">
+        Citas Agendadas
+      </caption>
+      <thead>
+        <tr>
+          <th class="border border-gray-300 px-4 py-2">Mascota</th>
+          <th class="border border-gray-300 px-4 py-2">Fecha y Hora</th>
+          <th class="border border-gray-300 px-4 py-2">Tipo Cita</th>
+          <th class="border border-gray-300 px-4 py-2">Sede</th>
+          <th class="border border-gray-300 px-4 py-2">Veterinario</th>
+          <th class="border border-gray-300 px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let cita of citas">
+          <td class="border border-gray-300 px-4 py-2">
+            {{ cita.mascota.nombre }}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            {{ cita.fecha_hora }}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            {{ cita.tipoCita.nombre }}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            {{ cita.sedeCita.nombre }}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            {{ cita.veterinario.nombres }}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            <button
+              class="text-white mr-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-800 dark:focus:ring-green-600"
+              type="button"
+              (click)="agendarCita()"
+            >
+              Reagendar
+            </button>
+            <button
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-800 dark:focus:ring-red-600"
+              type="button"
+              (click)="agendarCita()"
+            >
+              Cancelar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noCitasTemplate>
+      <p class="text-lg font-semibold text-gray-700 mt-4">
+        No hay citas disponibles.
+      </p>
+    </ng-template>
+  </div>
+</div>

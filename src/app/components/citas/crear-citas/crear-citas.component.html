@@ -1,0 +1,155 @@
+<div class="flex h-screen">
+  <div class="w-64 bg-gray-800 text-white p-4">
+    <nav>
+      <ul>
+        <li><a href="#" class="block py-2 px-4">Item 1</a></li>
+        <li><a href="#" class="block py-2 px-4">Item 2</a></li>
+        <li><a href="#" class="block py-2 px-4">Item 3</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="flex-1 p-4 mt-10">
+    <div class="flex justify-start items-start space-x-4 mb-4">
+      <div class="relative">
+        <button
+          id="dropdownMascotasButton"
+          (click)="toggleDropdown('mascotas')"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          Mascotas
+          <svg
+            class="w-2.5 h-2.5 ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <div
+          *ngIf="dropdownOpen === 'mascotas'"
+          class="absolute bg-white border border-gray-300 rounded shadow-lg mt-2"
+        >
+          <ul class="py-1">
+            <li *ngFor="let mascota of mascotas">
+              <a
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                (click)="seleccionarMascota(mascota)"
+                >{{ mascota.nombre }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="relative">
+        <button
+          id="dropdownTipoCitaButton"
+          (click)="toggleDropdown('tipoCita')"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          Tipo Cita
+          <svg
+            class="w-2.5 h-2.5 ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <div
+          *ngIf="dropdownOpen === 'tipoCita'"
+          class="absolute bg-white border border-gray-300 rounded shadow-lg mt-2"
+        >
+          <ul class="py-1">
+            <li *ngFor="let tipoCita of tipoCitas">
+              <a
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                (click)="seleccionarCita(tipoCita)"
+                >{{ tipoCita.nombre }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="datos-mascota">
+      <p class="text-lg font-semibold">Datos de la Cita</p>
+      <div *ngIf="mascotaSeleccionada">
+        <p class="text-lg font-semibold">
+          Nombre de la Mascota: {{ mascotaSeleccionada.nombre }}
+        </p>
+      </div>
+      <div *ngIf="citaSeleccionada">
+        <p class="text-lg font-semibold">
+          Tipo de Cita: {{ citaSeleccionada.nombre }}
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <table
+        *ngIf="agendaCitasVeterinarios.length > 0; else noCitasTemplate"
+        class="min-w-full mt-16 border-collapse border border-gray-300"
+      >
+        <caption class="text-3xl font-semibold mb-4 text-blue-700">
+          Citas Disponibles
+        </caption>
+        <thead>
+          <tr>
+            <th class="border border-gray-300 px-4 py-2">Veterinario</th>
+            <th class="border border-gray-300 px-4 py-2">Fecha</th>
+            <th class="border border-gray-300 px-4 py-2">Hora</th>
+            <th class="border border-gray-300 px-4 py-2">Sede</th>
+            <th class="border border-gray-300 px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let agenda of agendaCitasVeterinarios">
+            <td class="border border-gray-300 px-4 py-2">
+              {{ agenda.veterinario.nombres }}
+            </td>
+            <td class="border border-gray-300 px-4 py-2">{{ agenda.fecha }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ agenda.hora }}</td>
+            <td class="border border-gray-300 px-4 py-2">
+              {{ agenda.sedeCita.nombre }}
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <button
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+                (click)="agendarCita(agenda)"
+              >
+                Agendar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noCitasTemplate>
+        <p class="text-lg font-semibold text-gray-700 mt-4">
+          No hay citas disponibles.
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>
