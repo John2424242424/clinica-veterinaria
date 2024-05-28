@@ -11,15 +11,15 @@ import { AuthGuard } from './guard/auth-guard.guard';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'app-root', pathMatch: 'full', canActivate: [AuthGuard]},
-  { path: 'crear-mascotas', component: CrearMascotaComponent, canActivate: [AuthGuard]},
-  { path: 'side-bar', component: SideBarComponent, canActivate: [AuthGuard]},
-  { path: 'consultar-mascotas', component: ConsultarMascotaComponent , canActivate: [AuthGuard]},
-  { path: 'editar-mascota/:id', component: EditarMascotaComponent, canActivate: [AuthGuard]},
-  { path: 'crear-cita', component: CrearCitasComponent, canActivate: [AuthGuard]},
-  { path: 'editar-cita/:id', component: EditarCitaComponent, canActivate: [AuthGuard]},
-  { path: 'consultar-citas', component: ConsultarCitasComponent, canActivate: [AuthGuard]},
-  { path: 'login', component: LoginComponent}
+  { path: '', redirectTo: 'login', pathMatch: 'full', },
+  { path: 'login', component: LoginComponent },
+  { path: 'crear-mascotas', component: CrearMascotaComponent, canActivate: [AuthGuard] },
+  { path: 'side-bar', component: SideBarComponent, canActivate: [AuthGuard] },
+  { path: 'consultar-mascotas', component: ConsultarMascotaComponent, canActivate: [AuthGuard] },
+  { path: 'editar-mascota/:id', component: EditarMascotaComponent, canActivate: [AuthGuard] },
+  { path: 'crear-cita', component: CrearCitasComponent, canActivate: [AuthGuard] },
+  { path: 'editar-cita/:id', component: EditarCitaComponent, canActivate: [AuthGuard] },
+  { path: 'consultar-citas', component: ConsultarCitasComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
